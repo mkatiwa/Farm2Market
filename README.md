@@ -7,8 +7,6 @@ Farm2Market is a Django web application designed to connect local farmers direct
 - Secure transaction system
 - Responsive UI built with Bootstrap CSS
 
-**Key Principle**: The project avoids stigmatizing language (e.g., "small-scale farmers" instead of "poor farmers") to promote inclusive design.
-
 ## 🔗 Links
 - **GitHub Repository**: [https://github.com/mkatiwa/Farm2Market](https://github.com/mkatiwa/Farm2Market)
 - **Live Demo**: [Coming Soon]() 
@@ -27,7 +25,7 @@ Farm2Market is a Django web application designed to connect local farmers direct
    git clone https://github.com/mkatiwa/Farm2Market.git
    cd Farm2Market
 
-###2Set up virtual environment:
+###2 Set up virtual environment:
 
 bash
 python -m venv venv
