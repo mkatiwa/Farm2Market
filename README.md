@@ -9,7 +9,8 @@ Farm2Market is a Django web application designed to connect local farmers direct
 
 ## 🔗 Links
 - **GitHub Repository**: [https://github.com/mkatiwa/Farm2Market](https://github.com/mkatiwa/Farm2Market)
-- **Live Demo**: [Coming Soon]() 
+- **Live Demo**: 
+https://drive.google.com/file/d/1VFh5N3uIQ1Xr06-puFRzotKZndZgFClB/view?usp=sharing
 
 ## 🛠️ Setup & Installation
 
@@ -50,17 +51,6 @@ Start development server:
 
 bash
 python manage.py runserver
-🎨 Designs
-UI Mockups
-View Figma Designs
-
-Screenshots:
-
-Page	Preview
-Home	https://screenshots/home.png
-Dashboard	https://screenshots/dashboard.png
-Database Schema
-https://designs/er_diagram.png
 
 🚀 Deployment Plan
 1. Production Setup
