@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Farm2Market{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/outline-style.css' %}">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation with Outline Style -->
+    <nav class="navbar navbar-expand-lg navbar-outline fixed-top">
+        <div class="container">
+            <a class="navbar-brand outline-brand" href="{% url 'product_list' %}">Home</a>
+
+                <i class="fas fa-seedling me-2"></i>Farm2Market
+            </a>
+            
+            <button class="navbar-toggler outline-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link outline-link" href="{% url 'product_list' %}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link outline-link" href="#">
+                            <i class="fas fa-apple-alt me-1"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link outline-link" href="#">
+                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link outline-link" href="#">
+                            <i class="fas fa-user me-1"></i>Account
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        {% block hero %}
+        <section class="hero-section outline-hero">
+            <div class="container">
+                <div class="row align-items-center min-vh-50">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 outline-heading">Fresh from Farm to Your Market</h1>
+                        <p class="lead outline-text">Connect directly with local farmers and get the freshest produce delivered to your doorstep.</p>
+                        <button class="btn btn-outline-primary btn-lg outline-btn">
+                            <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image outline-card">
+                            <i class="fas fa-carrot fa-10x text-success opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+
+        <!-- Page Content -->
+        <div class="container my-5">
+            {% block content %}
+            <!-- Default content if no block is provided -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card outline-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+                            <h5 class="card-title outline-heading">Fresh & Organic</h5>
+                            <p class="card-text outline-text">Directly sourced from certified organic farms</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card outline-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-truck fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title outline-heading">Fast Delivery</h5>
+                            <p class="card-text outline-text">Same day delivery for orders placed before 2 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card outline-card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-handshake fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title outline-heading">Support Farmers</h5>
+                            <p class="card-text outline-text">Direct trade ensures fair prices for farmers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer outline-footer mt-auto">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-md-6">
+                    <h5 class="outline-heading">Farm2Market</h5>
+                    <p class="outline-text">Connecting communities with fresh, local produce.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="outline-link me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="outline-link me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="outline-link me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="outline-divider">
+            <div class="row py-2">
+                <div class="col-12 text-center">
+                    <p class="outline-text mb-0">&copy; 2025 Farm2Market. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

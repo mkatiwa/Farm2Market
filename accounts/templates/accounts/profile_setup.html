@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup - AgriConnect</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d5a27;
+            --light-green: #4a7c59;
+            --accent-orange: #ff8c42;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .setup-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .role-card {
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .role-card:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .role-card.selected {
+            border-color: var(--primary-green);
+            background: rgba(45, 90, 39, 0.05);
+        }
+        
+        .role-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="setup-card">
+        <div class="text-center mb-4">
+            <i class="fas fa-seedling fa-3x text-success mb-3"></i>
+            <h2 class="text-primary">Welcome to AgriConnect!</h2>
+            <p class="text-muted">Choose your role to get started</p>
+        </div>
+        
+        <form method="post" id="roleForm">
+            {% csrf_token %}
+            
+            <div class="role-card" data-role="farmer">
+                <i class="fas fa-user-tie role-icon"></i>
+                <h4>I'm a Farmer</h4>
+                <p class="text-muted">Sell your products directly to buyers</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="fas fa-check text-success me-2"></i>List your products</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Manage inventory</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Track sales</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Connect with buyers</li>
+                </ul>
+            </div>
+            
+            <div class="role-card" data-role="buyer">
+                <i class="fas fa-shopping-bag role-icon"></i>
+                <h4>I'm a Buyer</h4>
+                <p class="text-muted">Purchase fresh products from farmers</p>
+                <ul class="list-unstyled text-start">
+                    <li><i class="fas fa-check text-success me-2"></i>Browse products</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Place orders</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Track purchases</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Find suppliers</li>
+                </ul>
+            </div>
+            
+            <input type="hidden" name="role" id="selectedRole" value="">
+            
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
+                    <i class="fas fa-arrow-right me-2"></i>Continue
+                </button>
+            </div>
+        </form>
+        
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                You can always change your role later in settings
+            </small>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.role-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+                
+                // Set the hidden input value
+                document.getElementById('selectedRole').value = this.dataset.role;
+                
+                // Enable submit button
+                document.getElementById('submitBtn').disabled = false;
+                
+                // Update button text
+                const roleText = this.dataset.role === 'farmer' ? 'Farmer' : 'Buyer';
+                document.getElementById('submitBtn').innerHTML = 
+                    `<i class="fas fa-arrow-right me-2"></i>Continue as ${roleText}`;
+            });
+        });
+        
+        // Form validation
+        document.getElementById('roleForm').addEventListener('submit', function(e) {
+            if (!document.getElementById('selectedRole').value) {
+                e.preventDefault();
+                alert('Please select a role to continue.');
+            }
+        });
+    </script>
+</body>
+</html>
